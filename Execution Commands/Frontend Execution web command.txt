@@ -1,0 +1,15 @@
+now open another power shell terminal to execute Frontend
+
+-> cd C:\Users\DELL\OneDrive\Desktop\hakathon1\NextGenEd\Frontend
+
+-> python -m http.server 8080
+
+-> it will give as:
+
+Serving HTTP on :: port 8080 (http://[::]:8080/) ...
+
+-> now open web browser and give the address as:
+
+http://localhost:8080/
+
+it will show the frontend process

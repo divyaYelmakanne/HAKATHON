@@ -1,0 +1,19 @@
+-> cd C:\Users\DELL\OneDrive\Desktop\hakathon1\NextGenEd\Backend
+
+
+ -> php -S localhost:8000
+
+
+-> it will give as:
+
+PHP 8.4.8 Development Server (http://localhost:8000) started
+
+-> now open web browser and give the address as:
+
+http://localhost:8000/
+
+it will show the backend process
+
+
+
+
