@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGenEd - JavaScript Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e3f2fd;
+            text-align: center;
+        }
+        .header {
+            width: 100%;
+            background: navy;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .back-button {
+            position: absolute;
+            left: 20px;
+            background: #ffb347;
+            color: white;
+            padding: 10px;
+            width: 80px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .course-box {
+            background-color: #feca57;
+            color: #222;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            max-width: 400px;
+        }
+        .course-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        .course-content {
+            display: none;
+            text-align: left;
+            margin: 30px auto 0 auto;
+            max-width: 800px;
+        }
+        .module {
+            background-color: #ff9ff3;
+            color: #222;
+            padding: 14px;
+            margin: 8px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .module-content {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
+        .code-block {
+            background-color: #222;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .finish-course-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            width: 180px;
+            text-align: center;
+            height: 40px;
+            padding-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin: 30px auto 0 auto;
+            display: block;
+        }
+        .finish-course-button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+        .certificate {
+            display: none;
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .print-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .print-button:hover {
+            background-color: #e68900;
+        }
+        @media (max-width: 600px) {
+            .course-content, .certificate {
+                width: 98% !important;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../courses.html">
+            <button class="back-button">Back</button>
+        </a>
+        <h3 style="flex: 1; text-align: center; margin: 0;">NextGenEd - JavaScript Course</h3>
+    </div>
+    <br><br><br><br>
+    <div class="course-box" onclick="showCourseContent()">Start JavaScript Course</div>
+    <div id="course-content" class="course-content">
+        <h2>JavaScript Modules</h2>
+        <div class="module" onclick="toggleModule(0)">About JavaScript</div>
+        <div class="module-content">
+            <p>JavaScript is a versatile programming language used to create interactive and dynamic web pages. It runs in the browser and can manipulate HTML, CSS, and more.</p>
+        </div>
+        <div class="module" onclick="toggleModule(1)">JavaScript Syntax</div>
+        <div class="module-content">
+            <p>JavaScript syntax includes statements, semicolons, and curly braces for code blocks.</p>
+            <div class="code-block">
+                let x = 5;
+                if (x > 0) {
+                  console.log("Positive number");
+                }
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(2)">Variables &amp; Data Types</div>
+        <div class="module-content">
+            <p>Variables are declared using <code>var</code>, <code>let</code>, or <code>const</code>. Data types include string, number, boolean, object, array, null, undefined, and symbol.</p>
+            <div class="code-block">
+                let name = "Alice";
+                const age = 25;
+                var isStudent = true;
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(3)">JavaScript Comments</div>
+        <div class="module-content">
+            <p>Comments help document your code:</p>
+            <div class="code-block">
+                // This is a single-line comment<br>
+                /* This is a multi-line comment */
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(4)">Functions</div>
+        <div class="module-content">
+            <p>Functions are blocks of code designed to perform a task.</p>
+            <div class="code-block">
+                function greet(name) {
+                  return "Hello, " + name + "!";
+                }
+                // ES6 arrow function
+                const add = (a, b) => a + b;
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(5)">Arrays</div>
+        <div class="module-content">
+            <p>Arrays store multiple values in a single variable.</p>
+            <div class="code-block">
+                let colors = ["red", "green", "blue"];
+                console.log(colors[1]); // green
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(6)">Objects</div>
+        <div class="module-content">
+            <p>Objects store key-value pairs.</p>
+            <div class="code-block">
+                let person = {
+                  name: "Bob",
+                  age: 30,
+                  isStudent: false
+                };
+                console.log(person.name); // Bob
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(7)">Loops</div>
+        <div class="module-content">
+            <p>Loops are used to repeat code:</p>
+            <div class="code-block">
+                for (let i = 0; i < 5; i++) {
+                  console.log(i);
+                }
+                // while loop
+                let j = 0;
+                while (j < 5) {
+                  j++;
+                }
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(8)">Links &amp; Events</div>
+        <div class="module-content">
+            <p>JavaScript can handle events like clicks, mouseovers, etc.:</p>
+            <div class="code-block">
+                &lt;button onclick="alert('Hello!')"&gt;Click Me&lt;/button&gt;
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(9)">Lists</div>
+        <div class="module-content">
+            <p>Lists in JavaScript are usually arrays, but you can also create HTML lists dynamically:</p>
+            <div class="code-block">
+                let fruits = ["Apple", "Banana", "Cherry"];
+                let ul = document.createElement('ul');
+                fruits.forEach(fruit => {
+                  let li = document.createElement('li');
+                  li.textContent = fruit;
+                  ul.appendChild(li);
+                });
+                document.body.appendChild(ul);
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(10)">Tables</div>
+        <div class="module-content">
+            <p>You can create and manipulate tables with JavaScript:</p>
+            <div class="code-block">
+                let table = document.createElement('table');
+                for (let i = 0; i < 3; i++) {
+                  let row = document.createElement('tr');
+                  for (let j = 0; j < 3; j++) {
+                    let cell = document.createElement('td');
+                    cell.textContent = `Row ${i+1}, Col ${j+1}`;
+                    row.appendChild(cell);
+                  }
+                  table.appendChild(row);
+                }
+                document.body.appendChild(table);
+            </div>
+        </div>
+        <button class="finish-course-button" onclick="finishCourse()">Finish Course</button>
+    </div>
+    <div id="certificate" class="certificate">
+        <h2>🎉 Certificate of Completion 🎉</h2>
+        <p>This is to certify that you have successfully completed the JavaScript course.</p>
+        <p>You have learned:</p>
+        <ul>
+            <li>JavaScript syntax and variables</li>
+            <li>Functions, arrays, and objects</li>
+            <li>Loops, events, and DOM manipulation</li>
+            <li>Best practices for writing JavaScript</li>
+        </ul>
+        <p>Congratulations on your achievement!</p>
+        <button class="print-button" onclick="window.print()">Print Certificate</button>
+    </div>
+    <script>
+        function showCourseContent() {
+            document.querySelector('.course-box').style.display = 'none';
+            document.getElementById('course-content').style.display = 'block';
+        }
+        function toggleModule(index) {
+            const modules = document.querySelectorAll('.module-content');
+            const currentModule = modules[index];
+            modules.forEach((module, i) => {
+                if (i !== index) module.style.display = 'none';
+            });
+            if (currentModule.style.display === 'block') {
+                currentModule.style.display = 'none';
+            } else {
+                currentModule.style.display = 'block';
+            }
+        }
+        function finishCourse() {
+            document.getElementById('course-content').style.display = 'none';
+            document.getElementById('certificate').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

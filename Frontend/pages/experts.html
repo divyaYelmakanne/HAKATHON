@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Consultation - NextGenEd</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: navy;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .back-btn {
+            background: #ffb347;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .hero-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .hero-section h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            color: #666;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .expert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .expert-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .expert-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .expert-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            color: white;
+        }
+
+        .expert-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .expert-specialty {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .expert-bio {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .consult-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .consult-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .suggestions-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .suggestions-section h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .suggestion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .suggestion-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 5px solid #667eea;
+        }
+
+        .suggestion-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .suggestion-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .contact-form {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../index.html" class="back-btn">← Back to Home</a>
+        <h1>Expert Consultation</h1>
+        <div></div>
+    </div>
+
+    <div class="container">
+        <div class="hero-section">
+            <h1>👨‍🏫 Connect with Programming Experts</h1>
+            <p>Get personalized guidance from industry professionals and experienced developers. Our experts are here to help you master programming concepts and advance your career.</p>
+        </div>
+
+        <div class="expert-grid">
+            <div class="expert-card">
+                <div class="expert-avatar">👨‍💻</div>
+                <div class="expert-name">Dr. Sarah Johnson</div>
+                <div class="expert-specialty">Full-Stack Development</div>
+                <div class="expert-bio">Senior Software Engineer with 8+ years of experience in React, Node.js, and Python. Passionate about teaching and mentoring new developers.</div>
+                <button class="consult-btn" onclick="openConsultation('sarah')">Consult Now</button>
+            </div>
+
+            <div class="expert-card">
+                <div class="expert-avatar">👩‍💼</div>
+                <div class="expert-name">Mike Chen</div>
+                <div class="expert-specialty">Frontend Development</div>
+                <div class="expert-bio">Frontend Architect specializing in modern JavaScript frameworks, CSS, and responsive design. Former Google developer with 10+ years experience.</div>
+                <button class="consult-btn" onclick="openConsultation('mike')">Consult Now</button>
+            </div>
+
+            <div class="expert-card">
+                <div class="expert-avatar">👨‍🔬</div>
+                <div class="expert-name">Dr. Emily Rodriguez</div>
+                <div class="expert-specialty">Data Science & Python</div>
+                <div class="expert-bio">Data Scientist and Python expert with PhD in Computer Science. Specializes in machine learning, data analysis, and algorithm optimization.</div>
+                <button class="consult-btn" onclick="openConsultation('emily')">Consult Now</button>
+            </div>
+
+            <div class="expert-card">
+                <div class="expert-avatar">👨‍🎓</div>
+                <div class="expert-name">Alex Thompson</div>
+                <div class="expert-specialty">Backend Development</div>
+                <div class="expert-bio">Backend specialist with expertise in Java, Spring Boot, and microservices architecture. 7+ years building scalable applications.</div>
+                <button class="consult-btn" onclick="openConsultation('alex')">Consult Now</button>
+            </div>
+        </div>
+
+        <div class="suggestions-section">
+            <h2>💡 Expert Learning Suggestions</h2>
+            <div class="suggestion-grid">
+                <div class="suggestion-card">
+                    <h3>🎯 Start with Fundamentals</h3>
+                    <p>Master HTML, CSS, and JavaScript basics before moving to frameworks. Strong foundations lead to better understanding of advanced concepts.</p>
+                </div>
+
+                <div class="suggestion-card">
+                    <h3>📚 Practice Daily</h3>
+                    <p>Code for at least 1 hour every day. Consistency is key to becoming a proficient programmer. Use platforms like LeetCode and HackerRank.</p>
+                </div>
+
+                <div class="suggestion-card">
+                    <h3>🔧 Build Real Projects</h3>
+                    <p>Apply your knowledge by building real-world projects. Start with simple applications and gradually increase complexity.</p>
+                </div>
+
+                <div class="suggestion-card">
+                    <h3>👥 Join Communities</h3>
+                    <p>Participate in programming communities, forums, and meetups. Networking with other developers accelerates learning.</p>
+                </div>
+
+                <div class="suggestion-card">
+                    <h3>📖 Read Documentation</h3>
+                    <p>Always read official documentation. It's the most accurate source of information and best practices.</p>
+                </div>
+
+                <div class="suggestion-card">
+                    <h3>🔄 Version Control</h3>
+                    <p>Learn Git and GitHub early. Version control is essential for collaboration and project management.</p>
+                </div>
+
+                <div class="suggestion-card">
+                    <h3>🧪 Test Your Code</h3>
+                    <p>Write tests for your code. Testing ensures reliability and helps you understand your code better.</p>
+                </div>
+
+                <div class="suggestion-card">
+                    <h3>🚀 Stay Updated</h3>
+                    <p>Technology evolves rapidly. Follow tech blogs, podcasts, and conferences to stay current with industry trends.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>📞 Schedule a Consultation</h2>
+            <form id="consultationForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="topic">Topic of Interest *</label>
+                    <select id="topic" name="topic" required>
+                        <option value="">Select a topic</option>
+                        <option value="html-css">HTML & CSS</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="java">Java</option>
+                        <option value="react">React.js</option>
+                        <option value="nodejs">Node.js</option>
+                        <option value="datascience">Data Science</option>
+                        <option value="algorithms">Algorithms & Data Structures</option>
+                        <option value="career">Career Guidance</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="expert">Preferred Expert</label>
+                    <select id="expert" name="expert">
+                        <option value="">Any Expert</option>
+                        <option value="sarah">Dr. Sarah Johnson (Full-Stack)</option>
+                        <option value="mike">Mike Chen (Frontend)</option>
+                        <option value="emily">Dr. Emily Rodriguez (Data Science)</option>
+                        <option value="alex">Alex Thompson (Backend)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Describe Your Learning Goals *</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us about your current skill level, what you want to learn, and any specific challenges you're facing..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Schedule Consultation</button>
+            </form>
+            <div id="successMessage" class="success-message">
+                Thank you! Your consultation request has been submitted. We'll get back to you within 24 hours.
+            </div>
+        </div>
+    </div>
+
+    <!-- Consultation Modal -->
+    <div id="consultationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Schedule Consultation</h2>
+            <p id="modalDescription">Ready to take your programming skills to the next level? Our experts are here to help!</p>
+            <div style="margin-top: 20px;">
+                <button class="consult-btn" onclick="scheduleConsultation()">Schedule Now</button>
+                <button class="consult-btn" onclick="closeModal()" style="background: #6c757d; margin-left: 10px;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openConsultation(expert) {
+            const modal = document.getElementById('consultationModal');
+            const title = document.getElementById('modalTitle');
+            const description = document.getElementById('modalDescription');
+            
+            const experts = {
+                'sarah': {
+                    name: 'Dr. Sarah Johnson',
+                    specialty: 'Full-Stack Development',
+                    description: 'Get expert guidance on React, Node.js, and Python development. Perfect for building complete web applications.'
+                },
+                'mike': {
+                    name: 'Mike Chen',
+                    specialty: 'Frontend Development',
+                    description: 'Master modern JavaScript, CSS, and responsive design. Learn to create beautiful, user-friendly interfaces.'
+                },
+                'emily': {
+                    name: 'Dr. Emily Rodriguez',
+                    specialty: 'Data Science & Python',
+                    description: 'Dive deep into Python programming, data analysis, and machine learning algorithms.'
+                },
+                'alex': {
+                    name: 'Alex Thompson',
+                    specialty: 'Backend Development',
+                    description: 'Learn Java, Spring Boot, and microservices architecture for building robust backend systems.'
+                }
+            };
+
+            title.textContent = `Consult with ${experts[expert].name}`;
+            description.textContent = experts[expert].description;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('consultationModal').style.display = 'none';
+        }
+
+        function scheduleConsultation() {
+            closeModal();
+            document.getElementById('consultationForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('consultationModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html> 
