@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Programming Mock Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .question-box {
+      background-color: #6fc1e6; /* light blue background for question */
+    }
+
+    .answered {
+      background-color: #28a745; /* green */
+    }
+
+    .not-answered {
+      background-color: #dc3545; /* red */
+    }
+
+    .opened {
+      background-color: #ffc107; /* yellow */
+    }
+  </style>
+</head>
+<body class="bg-[#f0f8ff] m-0 p-0">
+
+  <!-- Header -->
+  <header style="background-color: navy; color: white; padding: 10px 20px; position: fixed; top: 0; left: 0; width: 100%; z-index: 10; display: flex; align-items: center; justify-content: space-between;">
+    <a href="../mock.html" style="background-color: orangered; color: white; padding: 8px 16px; border-radius: 5px; font-weight: bold; font-size: 14px; text-decoration: none; transition: background 0.3s ease; cursor: pointer;">
+      Back
+    </a>
+    <h1 style="text-align: center; font-size: 24px; flex-grow: 1; margin: 0;">NextGenEd</h1>
+    <div style="font-size: 14px; font-weight: bold; padding: 5px 10px;">⏱️ <span id="timer">300</span></div>
+  </header>
+  
+
+  <!-- Main Content -->
+  <main class="pt-24 px-4 max-w-2xl mx-auto">
+    <h2 class="text-center text-xl font-semibold bg-blue-600 text-white py-2 mb-4">Python Programming Mock Test</h2>
+
+    <div id="question-area" class="space-y-4">
+      <div class="flex justify-center space-x-2 mb-4">
+        <div id="question-number-boxes" class="flex space-x-2"></div>
+      </div>
+
+      <div id="quiz-box" class="bg-[#add8e6] shadow-lg rounded-lg p-6 space-y-4">
+
+        <h2 id="question" class="text-lg font-semibold text-gray-800"></h2>
+        <div id="options" class="space-y-4"></div>
+
+        <div class="flex justify-between mt-4">
+          <button id="prev-btn" class="bg-blue-800 text-white px-4 py-2 rounded hover:shadow-lg disabled:opacity-50" disabled>Previous</button>
+          <button id="next-btn" class="bg-blue-800 text-white px-4 py-2 rounded hover:shadow-lg">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="result" class="mt-8 hidden bg-green-100 p-6 rounded shadow text-center">
+      <h3 class="text-xl font-semibold mb-2">Test Result</h3>
+      <p id="score" class="text-lg mb-4"></p>
+    </div>
+  </main>
+
+  <script>
+    // Python Programming Questions
+    const questionsPool = [
+      {
+        "question": "What is Python?",
+        "options": ["A programming language", "A snake", "A database", "An operating system"],
+        "correctAnswer": "A programming language"
+      },
+      {
+        "question": "Which of the following is used to create a comment in Python?",
+        "options": ["//", "/*", "#", "<!--"],
+        "correctAnswer": "#"
+      },
+      {
+        "question": "What is the correct way to create a variable in Python?",
+        "options": ["var x = 5", "x = 5", "variable x = 5", "int x = 5"],
+        "correctAnswer": "x = 5"
+      },
+      {
+        "question": "Which method is used to add an element to a list in Python?",
+        "options": ["add()", "append()", "insert()", "push()"],
+        "correctAnswer": "append()"
+      },
+      {
+        "question": "What is the output of print(2 ** 3)?",
+        "options": ["6", "8", "5", "Error"],
+        "correctAnswer": "8"
+      },
+      {
+        "question": "Which data type is used to store text in Python?",
+        "options": ["str", "text", "string", "char"],
+        "correctAnswer": "str"
+      },
+      {
+        "question": "How do you start an if statement in Python?",
+        "options": ["if x > y:", "if (x > y)", "if x > y then", "if x > y {"],
+        "correctAnswer": "if x > y:"
+      },
+      {
+        "question": "What is the correct file extension for Python files?",
+        "options": [".py", ".pt", ".python", ".pyt"],
+        "correctAnswer": ".py"
+      },
+      {
+        "question": "Which function is used to get the length of a list?",
+        "options": ["length()", "len()", "size()", "count()"],
+        "correctAnswer": "len()"
+      },
+      {
+        "question": "What is the result of 3 * 'hello'?",
+        "options": ["hellohellohello", "Error", "3hello", "hello3"],
+        "correctAnswer": "hellohellohello"
+      },
+      {
+        "question": "Which method removes whitespace from the beginning and end of a string?",
+        "options": ["trim()", "strip()", "clean()", "remove()"],
+        "correctAnswer": "strip()"
+      },
+      {
+        "question": "What does the range() function return?",
+        "options": ["A list", "A tuple", "A range object", "An integer"],
+        "correctAnswer": "A range object"
+      },
+      {
+        "question": "How do you create a function in Python?",
+        "options": ["function myFunc():", "def myFunc():", "create myFunc():", "func myFunc():"],
+        "correctAnswer": "def myFunc():"
+      },
+      {
+        "question": "Which operator is used for exponentiation in Python?",
+        "options": ["^", "**", "pow", "exp"],
+        "correctAnswer": "**"
+      },
+      {
+        "question": "What is the correct way to create a tuple?",
+        "options": ["x = (1, 2, 3)", "x = [1, 2, 3]", "x = {1, 2, 3}", "x = 1, 2, 3"],
+        "correctAnswer": "x = (1, 2, 3)"
+      },
+      {
+        "question": "Which method is used to find the maximum value in a list?",
+        "options": ["max()", "maximum()", "highest()", "top()"],
+        "correctAnswer": "max()"
+      },
+      {
+        "question": "What is the output of print(type([]))?",
+        "options": ["<class 'list'>", "<class 'array'>", "<class 'tuple'>", "Error"],
+        "correctAnswer": "<class 'list'>"
+      },
+      {
+        "question": "How do you check if a key exists in a dictionary?",
+        "options": ["if key in dict:", "if dict.hasKey(key):", "if dict.contains(key):", "if key exists in dict:"],
+        "correctAnswer": "if key in dict:"
+      },
+      {
+        "question": "What is the correct way to import a module?",
+        "options": ["import module", "include module", "using module", "require module"],
+        "correctAnswer": "import module"
+      },
+      {
+        "question": "Which method is used to convert a string to uppercase?",
+        "options": ["upper()", "uppercase()", "toUpper()", "capitalize()"],
+        "correctAnswer": "upper()"
+      },
+      {
+        "question": "What does the break statement do?",
+        "options": ["Stops the program", "Exits the current loop", "Continues to next iteration", "Returns a value"],
+        "correctAnswer": "Exits the current loop"
+      },
+      {
+        "question": "How do you create a copy of a list?",
+        "options": ["list.copy()", "list.clone()", "copy(list)", "list.duplicate()"],
+        "correctAnswer": "list.copy()"
+      },
+      {
+        "question": "What is the output of print('Hello' + 'World')?",
+        "options": ["HelloWorld", "Hello World", "Error", "Hello+World"],
+        "correctAnswer": "HelloWorld"
+      },
+      {
+        "question": "Which method is used to sort a list in ascending order?",
+        "options": ["sort()", "order()", "arrange()", "organize()"],
+        "correctAnswer": "sort()"
+      },
+      {
+        "question": "What is the correct way to handle exceptions in Python?",
+        "options": ["try-except", "try-catch", "if-error", "handle-error"],
+        "correctAnswer": "try-except"
+      },
+      {
+        "question": "How do you get the current date and time in Python?",
+        "options": ["datetime.now()", "time.now()", "date.now()", "current.time()"],
+        "correctAnswer": "datetime.now()"
+      },
+      {
+        "question": "What is the output of print(10 / 3)?",
+        "options": ["3", "3.333...", "3.0", "Error"],
+        "correctAnswer": "3.333..."
+      },
+      {
+        "question": "Which method is used to remove an element from a list?",
+        "options": ["remove()", "delete()", "pop()", "clear()"],
+        "correctAnswer": "remove()"
+      },
+      {
+        "question": "What is the correct way to open a file for reading?",
+        "options": ["open('file.txt', 'r')", "read('file.txt')", "file.open('file.txt')", "open('file.txt')"],
+        "correctAnswer": "open('file.txt', 'r')"
+      },
+      {
+        "question": "How do you create a set in Python?",
+        "options": ["x = {1, 2, 3}", "x = [1, 2, 3]", "x = (1, 2, 3)", "x = set(1, 2, 3)"],
+        "correctAnswer": "x = {1, 2, 3}"
+      }
+    ];
+
+    let currentQuestion = 0;
+    let answers = {};
+    let timeLeft = 300; // 5 minutes
+    let timer;
+
+    // Initialize the test
+    function initTest() {
+      createQuestionBoxes();
+      showQuestion();
+      startTimer();
+    }
+
+    // Create question number boxes
+    function createQuestionBoxes() {
+      const container = document.getElementById('question-number-boxes');
+      for (let i = 0; i < questionsPool.length; i++) {
+        const box = document.createElement('div');
+        box.className = 'w-8 h-8 rounded border-2 border-gray-300 flex items-center justify-center cursor-pointer text-sm font-semibold';
+        box.textContent = i + 1;
+        box.onclick = () => goToQuestion(i);
+        box.id = `q${i}`;
+        container.appendChild(box);
+      }
+    }
+
+    // Show current question
+    function showQuestion() {
+      const question = questionsPool[currentQuestion];
+      document.getElementById('question').textContent = question.question;
+      
+      const optionsContainer = document.getElementById('options');
+      optionsContainer.innerHTML = '';
+      
+      question.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'w-full p-3 text-left bg-white rounded border hover:bg-gray-50 transition-colors';
+        button.textContent = option;
+        button.onclick = () => selectAnswer(option);
+        
+        if (answers[currentQuestion] === option) {
+          button.classList.add('bg-blue-100', 'border-blue-500');
+        }
+        
+        optionsContainer.appendChild(button);
+      });
+      
+      updateQuestionBoxes();
+      updateNavigationButtons();
+    }
+
+    // Select an answer
+    function selectAnswer(answer) {
+      answers[currentQuestion] = answer;
+      showQuestion();
+    }
+
+    // Update question number boxes
+    function updateQuestionBoxes() {
+      for (let i = 0; i < questionsPool.length; i++) {
+        const box = document.getElementById(`q${i}`);
+        box.classList.remove('answered', 'not-answered', 'opened');
+        
+        if (i === currentQuestion) {
+          box.classList.add('opened');
+        } else if (answers[i]) {
+          box.classList.add('answered');
+        } else {
+          box.classList.add('not-answered');
+        }
+      }
+    }
+
+    // Update navigation buttons
+    function updateNavigationButtons() {
+      document.getElementById('prev-btn').disabled = currentQuestion === 0;
+      document.getElementById('next-btn').textContent = currentQuestion === questionsPool.length - 1 ? 'Finish' : 'Next';
+    }
+
+    // Go to specific question
+    function goToQuestion(index) {
+      currentQuestion = index;
+      showQuestion();
+    }
+
+    // Previous question
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion();
+      }
+    }
+
+    // Next question
+    function nextQuestion() {
+      if (currentQuestion < questionsPool.length - 1) {
+        currentQuestion++;
+        showQuestion();
+      } else {
+        finishTest();
+      }
+    }
+
+    // Start timer
+    function startTimer() {
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById('timer').textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          finishTest();
+        }
+      }, 1000);
+    }
+
+    // Finish test
+    function finishTest() {
+      clearInterval(timer);
+      
+      let correct = 0;
+      for (let i = 0; i < questionsPool.length; i++) {
+        if (answers[i] === questionsPool[i].correctAnswer) {
+          correct++;
+        }
+      }
+      
+      const score = Math.round((correct / questionsPool.length) * 100);
+      
+      document.getElementById('question-area').style.display = 'none';
+      document.getElementById('result').classList.remove('hidden');
+      document.getElementById('score').textContent = `You scored ${correct}/${questionsPool.length} (${score}%)`;
+    }
+
+    // Event listeners
+    document.getElementById('prev-btn').onclick = prevQuestion;
+    document.getElementById('next-btn').onclick = nextQuestion;
+
+    // Initialize when page loads
+    window.onload = initTest;
+  </script>
+</body>
+</html>
