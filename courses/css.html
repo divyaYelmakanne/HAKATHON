@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGenEd - CSS Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e3f2fd;
+            text-align: center;
+        }
+        .header {
+            width: 100%;
+            background: navy;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .back-button {
+            position: absolute;
+            left: 20px;
+            background: #ffb347;
+            color: white;
+            padding: 10px;
+            width: 80px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .course-box {
+            background-color: #4ecdc4;
+            color: #222;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            max-width: 400px;
+        }
+        .course-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        .course-content {
+            display: none;
+            text-align: left;
+            margin: 30px auto 0 auto;
+            max-width: 800px;
+        }
+        .module {
+            background-color: orange;
+            color: white;
+            padding: 14px;
+            margin: 8px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .module-content {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
+        .code-block {
+            background-color: #222;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .finish-course-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            width: 180px;
+            text-align: center;
+            height: 40px;
+            padding-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin: 30px auto 0 auto;
+            display: block;
+        }
+        .finish-course-button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+        .certificate {
+            display: none;
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .print-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .print-button:hover {
+            background-color: #e68900;
+        }
+        @media (max-width: 600px) {
+            .course-content, .certificate {
+                width: 98% !important;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../courses.html">
+            <button class="back-button">Back</button>
+        </a>
+        <h3 style="flex: 1; text-align: center; margin: 0;">NextGenEd - CSS Course</h3>
+    </div>
+    <br><br><br><br>
+    <div class="course-box" onclick="showCourseContent()">Start CSS Course</div>
+    <div id="course-content" class="course-content">
+        <h2>CSS Modules</h2>
+        <div class="module" onclick="toggleModule(0)">About CSS</div>
+        <div class="module-content">
+            <p>CSS (Cascading Style Sheets) is a language used to style and layout web pages. It controls the color, font, spacing, positioning, and many other aspects of HTML elements.</p>
+        </div>
+        <div class="module" onclick="toggleModule(1)">CSS Syntax</div>
+        <div class="module-content">
+            <p>CSS syntax consists of a selector and a declaration block:</p>
+            <div class="code-block">
+                selector {<br>
+                &nbsp;&nbsp;property: value;<br>
+                }
+            </div>
+            <p>Example:</p>
+            <div class="code-block">
+                p { color: red; font-size: 18px; }
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(2)">CSS Selectors</div>
+        <div class="module-content">
+            <p>Selectors are used to target HTML elements. Common selectors:</p>
+            <ul>
+                <li><b>Element selector:</b> <code>p</code></li>
+                <li><b>Class selector:</b> <code>.classname</code></li>
+                <li><b>ID selector:</b> <code>#idname</code></li>
+                <li><b>Universal selector:</b> <code>*</code></li>
+                <li><b>Attribute selector:</b> <code>input[type="text"]</code></li>
+            </ul>
+        </div>
+        <div class="module" onclick="toggleModule(3)">CSS Comments</div>
+        <div class="module-content">
+            <p>Comments in CSS are written like this:</p>
+            <div class="code-block">
+                /* This is a CSS comment */
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(4)">CSS Colors</div>
+        <div class="module-content">
+            <p>Colors can be defined using names, HEX, RGB, RGBA, HSL, and HSLA values.</p>
+            <div class="code-block">
+                color: red;<br>
+                color: #ff0000;<br>
+                color: rgb(255,0,0);<br>
+                color: rgba(255,0,0,0.5);<br>
+                color: hsl(0, 100%, 50%);
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(5)">CSS Box Model</div>
+        <div class="module-content">
+            <p>The box model describes the design and layout of elements:</p>
+            <ul>
+                <li>Content</li>
+                <li>Padding</li>
+                <li>Border</li>
+                <li>Margin</li>
+            </ul>
+            <img src="https://www.w3schools.com/css/box-model.gif" alt="CSS Box Model" style="max-width:100%;border-radius:8px;">
+        </div>
+        <div class="module" onclick="toggleModule(6)">CSS Links</div>
+        <div class="module-content">
+            <p>Links can be styled using the <code>:link</code>, <code>:visited</code>, <code>:hover</code>, and <code>:active</code> pseudo-classes.</p>
+            <div class="code-block">
+                a:link { color: blue; }<br>
+                a:visited { color: purple; }<br>
+                a:hover { color: red; }<br>
+                a:active { color: green; }
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(7)">CSS Lists</div>
+        <div class="module-content">
+            <p>Lists can be styled using <code>list-style-type</code>, <code>list-style-image</code>, etc.</p>
+            <div class="code-block">
+                ul { list-style-type: square; }<br>
+                ol { list-style-type: upper-roman; }
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(8)">CSS Tables</div>
+        <div class="module-content">
+            <p>Tables can be styled for borders, spacing, and more:</p>
+            <div class="code-block">
+                table, th, td { border: 1px solid black; border-collapse: collapse; }<br>
+                th, td { padding: 8px; }
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(9)">CSS Comments</div>
+        <div class="module-content">
+            <p>CSS comments are ignored by browsers and help document your code:</p>
+            <div class="code-block">
+                /* This is a comment */
+            </div>
+        </div>
+        <div class="module" onclick="toggleModule(10)">CSS Display &amp; Positioning</div>
+        <div class="module-content">
+            <p>Control how elements are displayed and positioned:</p>
+            <ul>
+                <li><b>display:</b> block, inline, inline-block, flex, grid, none</li>
+                <li><b>position:</b> static, relative, absolute, fixed, sticky</li>
+                <li><b>z-index:</b> controls stacking order</li>
+            </ul>
+        </div>
+        <button class="finish-course-button" onclick="finishCourse()">Finish Course</button>
+    </div>
+    <div id="certificate" class="certificate">
+        <h2>🎉 Certificate of Completion 🎉</h2>
+        <p>This is to certify that you have successfully completed the CSS course.</p>
+        <p>You have learned:</p>
+        <ul>
+            <li>CSS syntax and selectors</li>
+            <li>Styling text, links, lists, and tables</li>
+            <li>Box model and positioning</li>
+            <li>Best practices for writing CSS</li>
+        </ul>
+        <p>Congratulations on your achievement!</p>
+        <button class="print-button" onclick="window.print()">Print Certificate</button>
+    </div>
+    <script>
+        function showCourseContent() {
+            document.querySelector('.course-box').style.display = 'none';
+            document.getElementById('course-content').style.display = 'block';
+        }
+        function toggleModule(index) {
+            const modules = document.querySelectorAll('.module-content');
+            const currentModule = modules[index];
+            modules.forEach((module, i) => {
+                if (i !== index) module.style.display = 'none';
+            });
+            if (currentModule.style.display === 'block') {
+                currentModule.style.display = 'none';
+            } else {
+                currentModule.style.display = 'block';
+            }
+        }
+        function finishCourse() {
+            document.getElementById('course-content').style.display = 'none';
+            document.getElementById('certificate').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
