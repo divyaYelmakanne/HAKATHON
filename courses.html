@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGenEd - Courses</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: navy;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            background: #ffb347;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #ff4500;
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 100px auto 30px;
+            padding: 20px;
+        }
+
+        .instructions-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .instructions-title {
+            background: linear-gradient(45deg, #8b0000, #dc143c);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .instructions-list {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .instructions-list li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .course-card h3 {
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .course-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .course-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .html-course {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .css-course {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+        }
+
+        .js-course {
+            background: linear-gradient(135deg, #feca57, #ff9ff3);
+            color: white;
+        }
+
+        .start-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 25px;
+            border: 2px solid white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .start-btn:hover {
+            background: white;
+            color: #333;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+                margin-top: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-btn">← Back to Home</a>
+        <h1>NextGenEd Learning Platform</h1>
+        <div></div>
+    </div>
+
+    <div class="container">
+        <div class="instructions-section">
+            <h2 class="instructions-title">📚 Course Instructions</h2>
+            <ul class="instructions-list">
+                <li><strong>Stable Connection:</strong> Ensure you have a stable internet connection throughout the course.</li>
+                <li><strong>Sequential Learning:</strong> Complete modules in order as each builds on the previous one.</li>
+                <li><strong>Take Breaks:</strong> Don't hesitate to take breaks to avoid fatigue during lengthy modules.</li>
+                <li><strong>Code Editor:</strong> Have a code editor ready for practical exercises and hands-on practice.</li>
+                <li><strong>Review Content:</strong> Feel free to revisit previous lessons if you need clarification.</li>
+                <li><strong>Ask Questions:</strong> Use the experts consultation section if you encounter difficulties.</li>
+                <li><strong>External Resources:</strong> Check the dashboard's external resources section for additional materials.</li>
+            </ul>
+        </div>
+
+        <div class="courses-grid">
+            <div class="course-card html-course" onclick="window.location.href='courses/c.html'">
+                <div class="course-icon">🌐</div>
+                <h3>HTML Fundamentals</h3>
+                <p>Learn the building blocks of web development with HTML. Master document structure, elements, and semantic markup to create well-organized web pages.</p>
+                <a href="courses/c.html" class="start-btn">Start Learning</a>
+            </div>
+
+            <div class="course-card css-course" onclick="window.location.href='courses/css.html'">
+                <div class="course-icon">🎨</div>
+                <h3>CSS Styling</h3>
+                <p>Transform your HTML pages with beautiful styling. Learn layouts, colors, typography, and responsive design to create stunning websites.</p>
+                <a href="courses/css.html" class="start-btn">Start Learning</a>
+            </div>
+
+            <div class="course-card js-course" onclick="window.location.href='courses/js.html'">
+                <div class="course-icon">⚡</div>
+                <h3>JavaScript Programming</h3>
+                <p>Add interactivity and dynamic behavior to your websites. Master JavaScript fundamentals, DOM manipulation, and modern ES6+ features.</p>
+                <a href="courses/js.html" class="start-btn">Start Learning</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
